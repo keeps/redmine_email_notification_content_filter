@@ -10,20 +10,20 @@ module MailerPatch
 
   module InstanceMethods
     def issue_add_with_description_removed(issue)
-	if issue.project.module_enabled?('email_modifier')
+	if issue.project.module_enabled?('email_notification_content_filter')
 		issue.description=""
 	end
 	issue_add_without_description_removed(issue)
     end
     def document_added_with_description_removed(document)
-	if document.project.module_enabled?('email_modifier')
+	if document.project.module_enabled?('email_notification_content_filter')
 		document.description=""
 	end
 	document_added_without_description_removed(document)
     end
     def issue_edit_with_description_removed(journal)
 	issue = journal.journalized.reload
-	if issue.project.module_enabled?('email_modifier')
+	if issue.project.module_enabled?('email_notification_content_filter')
 		issue.description=""
 	end
     redmine_headers 'Project' => issue.project.identifier,

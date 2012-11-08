@@ -2,8 +2,8 @@ require 'redmine'
 require 'dispatcher'
 require 'mailer_patch'
 
-Redmine::Plugin.register :redmine_email_modifier do
-  name 'Redmine Email Modifier plugin'
+Redmine::Plugin.register :redmine_email_notification_content_filter do
+  name 'Redmine Email Notification Content Filter plugin'
   author 'Sébastien Leroux'
   description 'This is a plugin for Redmine that allows to remove the description in the notification emails'
   version '0.0.1'
@@ -13,8 +13,8 @@ Redmine::Plugin.register :redmine_email_modifier do
     'removeDescriptionFromNews' => 'false',
     'removeDescriptionFromIssue' => 'false'
   }
-  project_module :email_modifier do
-    permission :email_modifier_permission, {:email_modifier => :show}
+  project_module :email_notification_content_filter do
+    permission :block_email, {:email_notification_content_filter => :show}
   end
 end
 
