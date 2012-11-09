@@ -1,0 +1,6 @@
+<u><b><%= l(:fieldsToRemove)%></b></u><br/><br/>
+<%= check_box_tag('settings[removeDescription]', @settings['removeDescription'], @settings['removeDescription']) %> <%= l(:description)%> <br/>
+<%= check_box_tag('settings[removeNote]', @settings['removeNote'], @settings['removeNote']) %> <%= l(:notes)%> <br/>
+<%= check_box_tag('settings[removeSubject]', @settings['removeSubject'], @settings['removeSubject']) %> <%= l(:subject)%>
+
+

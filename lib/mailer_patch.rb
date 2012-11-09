@@ -3,28 +3,32 @@ module MailerPatch
     base.send(:include, InstanceMethods)
 
     base.class_eval do
-      alias_method_chain :issue_add, :description_removed
-      alias_method_chain :issue_edit, :description_removed
+      alias_method_chain :issue_add, :email_filter
+      alias_method_chain :issue_edit, :email_filter
     end
   end
 
   module InstanceMethods
-    def issue_add_with_description_removed(issue)
+    def issue_add_with_email_filter(issue)
 	if issue.project.module_enabled?('email_notification_content_filter')
-		issue.description=""
+		if Setting.plugin_redmine_email_notification_content_filter['removeDescription']
+			issue.description=""
+		end
+		if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
+			issue.subject=""
+		end
 	end
-	issue_add_without_description_removed(issue)
+	issue_add_without_email_filter(issue)
     end
-    def document_added_with_description_removed(document)
-	if document.project.module_enabled?('email_notification_content_filter')
-		document.description=""
-	end
-	document_added_without_description_removed(document)
-    end
-    def issue_edit_with_description_removed(journal)
+    def issue_edit_with_email_filter(journal)
 	issue = journal.journalized.reload
 	if issue.project.module_enabled?('email_notification_content_filter')
-		issue.description=""
+		if Setting.plugin_redmine_email_notification_content_filter['removeDescription']
+			issue.description=""
+		end
+		if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
+			issue.subject=""
+		end
 	end
     redmine_headers 'Project' => issue.project.identifier,
                     'Issue-Id' => issue.id,
@@ -32,6 +36,9 @@ module MailerPatch
     redmine_headers 'Issue-Assignee' => issue.assigned_to.login if issue.assigned_to
     message_id journal
     references issue
+    if Setting.plugin_redmine_email_notification_content_filter['removeNote']
+	journal.notes=""
+    end
     @author = journal.user
     recipients issue.recipients
     # Watchers in cc
