@@ -1,6 +1,6 @@
 = Redmine Email Notification Content Filter
 
-The Redmine Email Notification Content Filter plugin allows to remove the description in the notification emails
+Redmine Email Notification Content Filter plugin allows to remove the description in the notification emails
 
 == Compatibility
 
