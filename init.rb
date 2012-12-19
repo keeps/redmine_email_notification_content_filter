@@ -1,7 +1,6 @@
 require 'redmine'
 require 'dispatcher'
 require 'mailer_patch'
-require 'projects_controller_patch'
 
 Redmine::Plugin.register :redmine_email_notification_content_filter do
   name 'Redmine Email Notification Content Filter plugin'
@@ -22,7 +21,5 @@ end
 
 Dispatcher.to_prepare do
 	 require_dependency 'mailer'
-	 require_dependency 'projects_controller'
-  ProjectsController.send(:include, ProjectsControllerPatch)
   Mailer.send(:include, MailerPatch)
 end
