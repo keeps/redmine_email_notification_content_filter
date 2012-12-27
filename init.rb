@@ -1,5 +1,4 @@
-require 'redmine'
-require 'dispatcher'
+﻿require 'redmine'
 require 'mailer_patch'
 
 Redmine::Plugin.register :redmine_email_notification_content_filter do
@@ -19,7 +18,7 @@ Redmine::Plugin.register :redmine_email_notification_content_filter do
   end
 end
 
-Dispatcher.to_prepare do
-	 require_dependency 'mailer'
+ActionDispatch::Callbacks.to_prepare do
+	require_dependency 'mailer'
   Mailer.send(:include, MailerPatch)
 end
