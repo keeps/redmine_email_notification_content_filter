@@ -15,10 +15,13 @@ Redmine::Plugin.register :redmine_email_notification_content_filter do
   }, :partial => 'settings/email_notification_content_filter'
   project_module :email_notification_content_filter do
     permission :block_email, {:email_notification_content_filter => :show}
+    permission :manage, {:email_notification_content_filter => :manage}
   end
 end
 
 ActionDispatch::Callbacks.to_prepare do
 	require_dependency 'mailer'
   Mailer.send(:include, MailerPatch)
+  Project.send(:include, ProjectPatch)
+  ProjectsHelper.send(:include, ProjectsHelperPatch)
 end

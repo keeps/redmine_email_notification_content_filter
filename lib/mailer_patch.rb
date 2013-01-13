@@ -9,25 +9,27 @@ module MailerPatch
   end
 
   module InstanceMethods
+    # Copied from app/models/mailer.rb
     def issue_add_with_email_filter(issue)
       if issue.project.module_enabled?('email_notification_content_filter')
         if Setting.plugin_redmine_email_notification_content_filter['removeDescription']
-          issue.description=""
+          issue.description = ""
         end
         if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
-          issue.subject=""
+          issue.subject = ""
         end
       end
       issue_add_without_email_filter(issue)
     end
+
     def issue_edit_with_email_filter(journal)
       issue = journal.journalized.reload
       if issue.project.module_enabled?('email_notification_content_filter')
         if Setting.plugin_redmine_email_notification_content_filter['removeDescription']
-          issue.description=""
+          issue.description = ""
         end
         if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
-          issue.subject=""
+          issue.subject = ""
         end
       end
       redmine_headers 'Project' => issue.project.identifier,
@@ -37,7 +39,7 @@ module MailerPatch
       message_id journal
       references issue
       if Setting.plugin_redmine_email_notification_content_filter['removeNote']
-        journal.notes=""
+        journal.notes = ""
       end
       @author = journal.user
       to_recipients = issue.recipients
