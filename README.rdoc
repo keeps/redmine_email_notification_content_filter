@@ -1,14 +1,14 @@
 = Redmine Email Notification Content Filter
 
-Redmine Email Notification Content Filter plugin allows to remove the description in the notification emails
+Redmine Email Notification Content Filter plugin allows to configure contents in the notification emails
 
 == Compatibility
 
-This plugin works (has been tested) with redmine v1.4
+This plugin works (has been tested) with redmine v2.2
 
 == Installation
 
-* Place the plugin into  +/path/to/redmine/vendor/plugins+ . The name of the plugin's directory/folder should be *redmine_email_notification_content_filter*.
+* Place the plugin into  +/path/to/redmine/plugins+ . The name of the plugin's directory/folder should be *redmine_email_notification_content_filter*.
 * Restart redmine.
 
 == Usage
@@ -16,9 +16,6 @@ This plugin works (has been tested) with redmine v1.4
 To enable/disable the description in notification emails:
 
 1. Login to Redmine as an Administrator
-2. Browse to the Administration panel
-3. Enter the "Projects" area
-4. Select the project to configure
-5. Select the "Modules" panel
-6. To disable the description in emails, check the "Email notification content filter" checkbox. To enable the description in emails, uncheck the "Email notification content filter" checkbox.
-
+2. Enter inside a project
+3. Select "Settings" tab
+4. Select "Notification content filter" tab
