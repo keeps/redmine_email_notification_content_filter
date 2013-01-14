@@ -1,11 +1,6 @@
 # English strings go here for Rails i18n
 en:
-  fieldsToRemove: Fields to remove
-  description: Description
-  notes: Notes
-  subject: Subject
   project_module_email_notification_content_filter: Email notification content filter
-
-  email_notification_content_filter_configuration_tab: Email content
+  email_notification_content_filter_configuration_tab: Notification content filter
   label_email_notification_content_filter_field_name: Field
   notice_email_notification_content_filter_failed_to_save_config: Failed to save config

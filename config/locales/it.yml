@@ -1,6 +1,5 @@
 it:
-  fieldsToRemove: Campi da rimuovere
-  description: Descrizione
-  notes: Note
-  subject: Oggetto
-  project_module_email_notification_content_filter: Email notification content filter
+  project_module_email_notification_content_filter: Filtri sui contenuti delle email di notifica
+  email_notification_content_filter_configuration_tab: Contenuti delle notifiche
+  label_email_notification_content_filter_field_name: Campo
+  notice_email_notification_content_filter_failed_to_save_config: Impossibile salvare la configurazione

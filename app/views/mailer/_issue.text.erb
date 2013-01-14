@@ -1,13 +1,27 @@
-<%= "#{issue.tracker.name} ##{issue.id}: #{issue.subject}" %>
+<%= @issue_title %>
 <%= issue_url %>
 
+<%- unless @static_fields_to_hide.include?('author') -%>
 * <%=l(:field_author)%>: <%= issue.author %>
+<%- end -%>
+<%- unless @static_fields_to_hide.include?('status') -%>
 * <%=l(:field_status)%>: <%= issue.status %>
+<%- end -%>
+<%- unless @static_fields_to_hide.include?('priority') -%>
 * <%=l(:field_priority)%>: <%= issue.priority %>
+<%- end -%>
+<%- unless @static_fields_to_hide.include?('assigned_to') -%>
 * <%=l(:field_assigned_to)%>: <%= issue.assigned_to %>
+<%- end -%>
+<%- unless @static_fields_to_hide.include?('category') -%>
 * <%=l(:field_category)%>: <%= issue.category %>
+<%- end -%>
+<%- unless @static_fields_to_hide.include?('fixed_version') -%>
 * <%=l(:field_fixed_version)%>: <%= issue.fixed_version %>
-<% issue.custom_field_values.each do |c| %>* <%= c.custom_field.name %>: <%= show_value(c) %>
+<%- end -%>
+<% @issue_custom_field_values.each do |c| %>* <%= c.custom_field.name %>: <%= show_value(c) %>
 <% end -%>
 ----------------------------------------
+<%- unless @static_fields_to_hide.include?('description') -%>
 <%= issue.description %>
+<%- end -%>

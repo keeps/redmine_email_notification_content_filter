@@ -1,12 +1,16 @@
-<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => @journal.user) %>
+<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => @author_in_message_title) %>
 
+<%- unless @static_fields_to_hide.include?('journal_details') -%>
 <% details_to_strings(@journal.details, true).each do |string| -%>
 <%= string %>
 <% end -%>
+<%- end -%>
 
+<%- unless @static_fields_to_hide.include?('journal_notes') -%>
 <% if @journal.notes? -%>
 <%= @journal.notes %>
 
 <% end -%>
+<%- end -%>
 ----------------------------------------
 <%= render :partial => 'issue', :formats => [:text], :locals => { :issue => @issue, :issue_url => @issue_url } %>

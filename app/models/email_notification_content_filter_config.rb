@@ -25,6 +25,19 @@ class EmailNotificationContentFilterConfig < ActiveRecord::Base
     end
   end
 
+  def self.must_hide_field?(project_config, field_name)
+    saved_config = project_config.find {|conf| conf.field_name == field_name || conf.custom_field_id.to_s == field_name.to_s }
+    (saved_config && !saved_config.active?) || false
+  end
+
+  def self.static_field_to_hide_names(project_config)
+    project_config.select{|conf| !conf.field_name.nil? && !conf.active?}.map(&:field_name)
+  end
+
+  def self.issue_custom_field_to_remove_ids(project_config)
+    project_config.select {|conf| !conf.custom_field_id.blank? && !conf.active?}.map(&:custom_field_id)
+  end
+
   def self.configurable_fields_for_project(project)
     saved_static_fields_for_project = saved_static_configurable_fields_by_name(project)
     saved_configurable_issue_custom_fields_for_project = saved_configurable_issue_custom_fields_by_id(project)
@@ -99,12 +112,18 @@ class EmailNotificationContentFilterConfig < ActiveRecord::Base
 
   def self.static_configurable_fields(project, saved_fields_for_project_by_name)
     [
+      ConfigurableField.new(:name => 'project_name', :active => saved_static_configurable_field_is_active?('project_name', saved_fields_for_project_by_name), :label => I18n.t(:label_project), :is_static => true),
+      ConfigurableField.new(:name => 'tracker_name', :active => saved_static_configurable_field_is_active?('tracker_name', saved_fields_for_project_by_name), :label => I18n.t(:label_tracker), :is_static => true),
+      ConfigurableField.new(:name => 'description', :active => saved_static_configurable_field_is_active?('description', saved_fields_for_project_by_name), :label => I18n.t(:field_description), :is_static => true),
+      ConfigurableField.new(:name => 'subject', :active => saved_static_configurable_field_is_active?('subject', saved_fields_for_project_by_name), :label => I18n.t(:field_subject), :is_static => true),
       ConfigurableField.new(:name => 'author', :active => saved_static_configurable_field_is_active?('author', saved_fields_for_project_by_name), :label => I18n.t(:field_author), :is_static => true),
       ConfigurableField.new(:name => 'status', :active => saved_static_configurable_field_is_active?('status', saved_fields_for_project_by_name), :label => I18n.t(:field_status), :is_static => true),
       ConfigurableField.new(:name => 'priority', :active => saved_static_configurable_field_is_active?('priority', saved_fields_for_project_by_name), :label => I18n.t(:field_priority), :is_static => true),
       ConfigurableField.new(:name => 'assigned_to', :active => saved_static_configurable_field_is_active?('assigned_to', saved_fields_for_project_by_name), :label => I18n.t(:field_assigned_to), :is_static => true),
       ConfigurableField.new(:name => 'category', :active => saved_static_configurable_field_is_active?('category', saved_fields_for_project_by_name), :label => I18n.t(:field_category), :is_static => true),
-      ConfigurableField.new(:name => 'fixed_version', :active => saved_static_configurable_field_is_active?('fixed_version', saved_fields_for_project_by_name), :label => I18n.t(:field_fixed_version), :is_static => true)
+      ConfigurableField.new(:name => 'fixed_version', :active => saved_static_configurable_field_is_active?('fixed_version', saved_fields_for_project_by_name), :label => I18n.t(:field_fixed_version), :is_static => true),
+      ConfigurableField.new(:name => 'journal_details', :active => saved_static_configurable_field_is_active?('journal_details', saved_fields_for_project_by_name), :label => I18n.t(:label_details), :is_static => true),
+      ConfigurableField.new(:name => 'journal_notes', :active => saved_static_configurable_field_is_active?('journal_notes', saved_fields_for_project_by_name), :label => I18n.t(:field_notes), :is_static => true)
     ]
   end
 

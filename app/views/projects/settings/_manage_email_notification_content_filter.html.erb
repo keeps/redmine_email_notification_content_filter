@@ -6,7 +6,7 @@
       <th style="width:15%;"><%= l(:field_active) %></th>
     </tr></thead>
 
-    <% EmailNotificationContentFilterConfig.configurable_fields_for_project(@project).each_with_index do |field_config, idx| %>
+    <%- EmailNotificationContentFilterConfig.configurable_fields_for_project(@project).each_with_index do |field_config, idx| -%>
       <tr class="<%= cycle('odd', 'even') %>">
         <td>
           <%= hidden_field_tag "resources[#{idx}][name]", field_config.name %>

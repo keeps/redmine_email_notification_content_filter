@@ -1,11 +1,15 @@
-<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => h(@journal.user)) %>
+<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => h(@author_in_message_title)) %>
 
+<%- unless @static_fields_to_hide.include?('journal_details') -%>
 <ul>
 <% details_to_strings(@journal.details, false, :only_path => false).each do |string| %>
   <li><%= string %></li>
 <% end %>
 </ul>
+<%- end -%>
 
+<%- unless @static_fields_to_hide.include?('journal_notes') -%>
 <%= textilizable(@journal, :notes, :only_path => false) %>
+<%- end -%>
 <hr />
 <%= render :partial => 'issue', :formats => [:html], :locals => { :issue => @issue, :issue_url => @issue_url } %>
