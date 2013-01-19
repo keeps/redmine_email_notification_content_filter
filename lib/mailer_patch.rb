@@ -25,7 +25,7 @@ module MailerPatch
       end
 
       @issue_title = email_notification_content_filter_issue_title(issue.id, issue.project.name, issue.tracker.name, issue.status.name, issue.subject)
-      @author_in_message_title = @static_fields_to_hide.include?('project_name') ? "" : issue.author
+      @author_in_message_title = @static_fields_to_hide.include?('author') ? "" : issue.author
       s = email_notification_content_filter_subject(issue.id, issue.project.name, issue.tracker.name, issue.status.name, issue.subject)
 
       redmine_headers 'Project' => issue.project.identifier,
@@ -73,7 +73,7 @@ module MailerPatch
       cc = journal.watcher_recipients - recipients
       
       @issue_title = email_notification_content_filter_issue_title(issue.id, issue.project.name, issue.tracker.name, issue.status.name, issue.subject)
-      @author_in_message_title = @static_fields_to_hide.include?('project_name') ? "" : journal.user
+      @author_in_message_title = @static_fields_to_hide.include?('author') ? "" : journal.user
       status_name = journal.new_value_for('status_id') ? issue.status.name : ""
       s = email_notification_content_filter_subject(issue.id, issue.project.name, issue.tracker.name, status_name, issue.subject)
 

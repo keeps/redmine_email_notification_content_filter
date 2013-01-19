@@ -1,4 +1,8 @@
-<%= l(:text_issue_updated, :id => "##{@issue.id}", :author => h(@author_in_message_title)) %>
+<% if @author_in_message_title.blank? %>
+  <%= l(:text_issue_updated_without_author, :id => "##{@issue.id}") %>
+<% else %>
+  <%= l(:text_issue_updated, :id => "##{@issue.id}", :author => h(@author_in_message_title)) %>
+<% end %>
 
 <%- unless @static_fields_to_hide.include?('journal_details') -%>
 <ul>

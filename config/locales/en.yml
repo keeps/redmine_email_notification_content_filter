@@ -4,3 +4,5 @@ en:
   email_notification_content_filter_configuration_tab: Notification content filter
   label_email_notification_content_filter_field_name: Field
   notice_email_notification_content_filter_failed_to_save_config: Failed to save config
+  text_issue_added_without_author: Issue %{id} has been reported
+  text_issue_updated_without_author: Issue %{id} has been updated

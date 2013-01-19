@@ -1,3 +1,7 @@
-<%= l(:text_issue_added, :id => "##{@issue.id}", :author => h(@author_in_message_title)) %>
+<% if @author_in_message_title.blank? %>
+  <%= l(:text_issue_added_without_author, :id => "##{@issue.id}") %>
+<% else %>
+  <%= l(:text_issue_added, :id => "##{@issue.id}", :author => h(@author_in_message_title)) %>
+<% end %>
 <hr />
 <%= render :partial => 'issue', :formats => [:html], :locals => { :issue => @issue, :issue_url => @issue_url } %>
