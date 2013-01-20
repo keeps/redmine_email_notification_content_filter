@@ -9,7 +9,6 @@ Redmine::Plugin.register :redmine_email_notification_content_filter do
   author_url 'mailto:sleroux@keep.pt'
   url 'https://github.com/keeps/redmine_email_notification_content_filter'
   project_module :email_notification_content_filter do
-    permission :block_email, {:email_notification_content_filter => :show}
     permission :manage, {:email_notification_content_filter => :manage}
   end
 end
