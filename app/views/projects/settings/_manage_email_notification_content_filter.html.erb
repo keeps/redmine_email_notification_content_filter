@@ -2,16 +2,20 @@
 
   <table class="list">
     <thead><tr>
-      <th><%= l(:label_email_notification_content_filter_field_name) %></th>
+      <th align="left"><%= l(:label_email_notification_content_filter_field_name) %></th>
+      <th align="left"><%= l(:field_description) %></th>
       <th style="width:15%;"><%= l(:field_active) %></th>
     </tr></thead>
 
     <%- EmailNotificationContentFilterConfig.configurable_fields_for_project(@project).each_with_index do |field_config, idx| -%>
       <tr class="<%= cycle('odd', 'even') %>">
-        <td>
+        <td align="left">
           <%= hidden_field_tag "resources[#{idx}][name]", field_config.name %>
           <%= hidden_field_tag "resources[#{idx}][is_static]", field_config.is_static? %>
           <%= h(field_config.label) %>
+        </td>
+        <td align="left">
+          <%= h(field_config.description) %>
         </td>
         <td align="center" style="width:15%;">
           <%= check_box_tag "resources[#{idx}][active]", "1", field_config.active? %>

@@ -3,3 +3,17 @@ it:
   email_notification_content_filter_configuration_tab: Contenuti delle notifiche
   label_email_notification_content_filter_field_name: Campo
   notice_email_notification_content_filter_failed_to_save_config: Impossibile salvare la configurazione
+  text_issue_added_without_author: E' stata segnalata l'anomalia %{id}
+  text_issue_updated_without_author: L'anomalia %{id} è stata aggiornata
+  text_email_notification_content_filter_fields_project_name_description: 'Nome del progetto'
+  text_email_notification_content_filter_fields_tracker_name_description: 'Nome del tracker'
+  text_email_notification_content_filter_fields_description_description: 'Descrizione della segnalazione'
+  text_email_notification_content_filter_fields_subject_description: 'Oggetto della segnalazione'
+  text_email_notification_content_filter_fields_author_description: 'Autore della segnalazione o della modifica'
+  text_email_notification_content_filter_fields_status_description: 'Stato della segnalazione'
+  text_email_notification_content_filter_fields_priority_description: 'Priorità della segnalazione'
+  text_email_notification_content_filter_fields_assigned_to_description: 'Assegnatario della segnalazione'
+  text_email_notification_content_filter_fields_category_description: 'Categoria della segnalazione'
+  text_email_notification_content_filter_fields_fixed_version_description: 'Versione prevista'
+  text_email_notification_content_filter_fields_journal_details_description: 'Dettagli della modifica alla segnalazione'
+  text_email_notification_content_filter_fields_journal_notes_description: 'Note della modifica alla segnalazione'

@@ -6,3 +6,15 @@ en:
   notice_email_notification_content_filter_failed_to_save_config: Failed to save config
   text_issue_added_without_author: Issue %{id} has been reported
   text_issue_updated_without_author: Issue %{id} has been updated
+  text_email_notification_content_filter_fields_project_name_description: 'Project name'
+  text_email_notification_content_filter_fields_tracker_name_description: 'Tracker name'
+  text_email_notification_content_filter_fields_description_description: 'Issue description'
+  text_email_notification_content_filter_fields_subject_description: 'Issue subject'
+  text_email_notification_content_filter_fields_author_description: 'Issue reporter or updater'
+  text_email_notification_content_filter_fields_status_description: 'Issue status'
+  text_email_notification_content_filter_fields_priority_description: 'Issue priority'
+  text_email_notification_content_filter_fields_assigned_to_description: 'Issue assignee'
+  text_email_notification_content_filter_fields_category_description: 'Issue category'
+  text_email_notification_content_filter_fields_fixed_version_description: 'Issue target version'
+  text_email_notification_content_filter_fields_journal_details_description: 'Issue modification details'
+  text_email_notification_content_filter_fields_journal_notes_description: 'Issue modification notes'
