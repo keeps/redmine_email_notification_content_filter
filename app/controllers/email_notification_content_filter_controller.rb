@@ -2,7 +2,7 @@ class EmailNotificationContentFilterController < ApplicationController
   unloadable
 
   before_filter :find_project_by_project_id
-  #before_filter :authorize
+  before_filter :authorize
 
   def update
     configured_fields = EmailNotificationContentFilterConfig.parse_configured_fields(params[:resources])
