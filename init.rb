@@ -16,7 +16,7 @@ Redmine::Plugin.register :redmine_email_notification_content_filter do
     'removeDescriptionFromDocument' => 'false',
     'removeDescriptionFromNews' => 'false',
     'removeDescriptionFromIssue' => 'false'
-  }, :partial => 'app/settings/email_notification_content_filter')
+  }, :partial => 'settings/redmine_email_notification_content_filter')
   project_module :email_notification_content_filter do
     permission :block_email, {:email_notification_content_filter => :show}
   end
