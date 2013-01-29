@@ -1,5 +1,7 @@
+#!/bin/env ruby
+# encoding: utf-8
 require 'redmine'
-require 'dispatcher'
+require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
 require 'mailer_patch'
 
 Redmine::Plugin.register :redmine_email_notification_content_filter do
@@ -9,17 +11,28 @@ Redmine::Plugin.register :redmine_email_notification_content_filter do
   version '0.0.1'
   author_url 'mailto:sleroux@keep.pt'
   url 'https://github.com/keeps/redmine_email_notification_content_filter'
-  settings :default => {
+  settings(:default => {
     'removeDescriptionFromDocument' => 'false',
     'removeDescriptionFromNews' => 'false',
     'removeDescriptionFromIssue' => 'false'
-  }, :partial => 'settings/email_notification_content_filter'
+  }, :partial => 'app/settings/email_notification_content_filter')
   project_module :email_notification_content_filter do
     permission :block_email, {:email_notification_content_filter => :show}
   end
 end
 
-Dispatcher.to_prepare do
+
+if Rails::VERSION::MAJOR >= 3
+ActionDispatch::Callbacks.to_prepare do
 	 require_dependency 'mailer'
   Mailer.send(:include, MailerPatch)
+end
+
+
+else
+	Dispatcher.to_prepare do
+	 require_dependency 'mailer'
+  Mailer.send(:include, MailerPatch)
+end
+
 end
