@@ -1,5 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
+
 require 'redmine'
 require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
 require 'mailer_patch'
