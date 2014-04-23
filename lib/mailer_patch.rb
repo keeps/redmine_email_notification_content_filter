@@ -18,6 +18,10 @@ module MailerPatch
 		if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
 			issue.subject=""
 		end
+                if Setting.plugin_redmine_email_notification_content_filter['removeCustomField']
+                        issue.custom_field_values.each {|c| c.custom_field.name=""}
+                        issue.custom_field_values.each {|c| c.value=""}
+                end
 	end
 	issue_add_without_email_filter(issue)
     end
@@ -32,6 +36,10 @@ module MailerPatch
 			if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
 				issue.subject=""
 			end
+                	if Setting.plugin_redmine_email_notification_content_filter['removeCustomField']
+                        	issue.custom_field_values.each {|c| c.custom_field.name=""}
+                        	issue.custom_field_values.each {|c| c.value=""}
+                	end
 			end
 		    redmine_headers 'Project' => issue.project.identifier,
 				    'Issue-Id' => issue.id,
@@ -64,6 +72,10 @@ module MailerPatch
 			if Setting.plugin_redmine_email_notification_content_filter['removeSubject']
 				issue.subject=""
 			end
+	                if Setting.plugin_redmine_email_notification_content_filter['removeCustomField']
+                        	issue.custom_field_values.each {|c| c.custom_field.name=""}
+                        	issue.custom_field_values.each {|c| c.value=""}
+                	end
 		end
 	    redmine_headers 'Project' => issue.project.identifier,
 		            'Issue-Id' => issue.id,
