@@ -4,4 +4,5 @@ pt:
   description: Descrição
   notes: Notas
   subject: Assunto
+  customfield: customfield
   project_module_email_notification_content_filter: Filtro de conteúdo dos emails de notificação
