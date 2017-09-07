@@ -10,7 +10,7 @@ module MailerPatch
 
   module InstanceMethods
 
-    def issue_add_with_email_filter(issue)
+    def issue_add_with_email_filter(issue, to_users, cc_users)
 	if issue.project.module_enabled?('email_notification_content_filter')
 		if Setting.plugin_redmine_email_notification_content_filter['removeDescription']
 			issue.description=""
@@ -19,10 +19,10 @@ module MailerPatch
 			issue.subject=""
 		end
 	end
-	issue_add_without_email_filter(issue)
+	issue_add_without_email_filter(issue, to_users, cc_users)
     end
 
-    def issue_edit_with_email_filter(journal)
+    def issue_edit_with_email_filter(journal, to_users, cc_users)
 	if Rails::VERSION::MAJOR >= 3
 		     issue = journal.journalized.reload
 			if issue.project.module_enabled?('email_notification_content_filter')
