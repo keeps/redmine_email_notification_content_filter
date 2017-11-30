@@ -4,7 +4,7 @@ Redmine Email Notification Content Filter plugin allows to remove the descriptio
 
 == Compatibility
 
-This plugin works (has been tested) with redmine v1.4 and v2.2
+This plugin works (has been tested) with redmine v1.4, v2.2 and v3.4
 
 == Installation
 
